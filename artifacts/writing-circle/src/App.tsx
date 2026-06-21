@@ -108,7 +108,11 @@ const COUNCIL_AGENTS = [
 
 // ── API ───────────────────────────────────────────────────────────────────────
 async function callAI(system: string, messages: Array<{ role: "user" | "assistant"; content: string }>) {
-  const res = await fetch("/api/ai/chat", {
+  const API_BASE =
+  import.meta.env.VITE_API_URL ||
+  "https://workspaceapi-server-production-f7bb.up.railway.app";
+
+const res = await fetch(`${API_BASE}/ai/chat`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ system, messages }),
