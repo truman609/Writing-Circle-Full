@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "The Writing Circle"
+version = "1.0.0"
+id = "artifacts/writing-circle"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19236
+
+[services.development]
+run = "pnpm --filter @workspace/writing-circle run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/writing-circle", "run", "build" ]
+publicDir = "artifacts/writing-circle/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19236"
+BASE_PATH = "/"
