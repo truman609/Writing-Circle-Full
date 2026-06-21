@@ -5,8 +5,7 @@ import { logger } from "../lib/logger";
 const router: IRouter = Router();
 
 const anthropic = new Anthropic({
-  baseURL: process.env.AI_INTEGRATIONS_ANTHROPIC_BASE_URL,
-  apiKey: process.env.AI_INTEGRATIONS_ANTHROPIC_API_KEY ?? "placeholder",
+  apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
 router.post("/ai/chat", async (req, res): Promise<void> => {
